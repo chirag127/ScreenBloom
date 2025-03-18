@@ -1,20 +1,38 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { StatusBar } from "expo-status-bar";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+// Import context providers
+import { AuthProvider } from "./src/context/AuthContext";
+import { ThemeProvider, useTheme } from "./src/context/ThemeContext";
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+// Import navigation
+import AppNavigator from "./src/navigation/AppNavigator";
+
+// Main app component with context providers
+const App = () => {
+    return (
+        <SafeAreaProvider>
+            <ThemeProvider>
+                <AppContent />
+            </ThemeProvider>
+        </SafeAreaProvider>
+    );
+};
+
+// App content with access to theme context
+const AppContent = () => {
+    const { theme, isDark } = useTheme();
+
+    return (
+        <AuthProvider>
+            <StatusBar
+                style={isDark ? "light" : "dark"}
+                backgroundColor={theme.background}
+            />
+            <AppNavigator />
+        </AuthProvider>
+    );
+};
+
+export default App;
