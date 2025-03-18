@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
@@ -7,11 +7,18 @@ import { AuthProvider } from "./src/context/AuthContext";
 import { ThemeProvider, useTheme } from "./src/context/ThemeContext";
 import { NetworkProvider } from "./src/context/NetworkContext";
 
+// Import utilities
+import { configureErrorHandling } from "./src/utils/errorHandler";
+
 // Import navigation
 import AppNavigator from "./src/navigation/AppNavigator";
 
 // Main app component with context providers
 const App = () => {
+    // Configure error handling
+    useEffect(() => {
+        configureErrorHandling();
+    }, []);
     return (
         <SafeAreaProvider>
             <NetworkProvider>
