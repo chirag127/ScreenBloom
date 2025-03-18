@@ -33,16 +33,63 @@ const HomeScreen = ({ navigation }) => {
             setLoading(true);
 
             // Update streak (for daily login)
-            await progressAPI.updateStreak();
+            try {
+                await progressAPI.updateStreak();
+            } catch (err) {
+                console.log("Error updating streak:", err);
+            }
 
             // Fetch time tracking stats
-            const timeStats = await timeTrackerAPI.getStats();
+            let timeStats = null;
+            try {
+                timeStats = await timeTrackerAPI.getStats();
+            } catch (err) {
+                console.log("Error fetching time stats:", err);
+                // Provide default stats
+                timeStats = {
+                    totalTimeSaved: 0,
+                    totalGoals: 0,
+                    completedGoals: 0,
+                    weeklyStats: Array(7)
+                        .fill(0)
+                        .map((_, i) => {
+                            const date = new Date();
+                            date.setDate(date.getDate() - 6 + i);
+                            return {
+                                date: date.toISOString().split("T")[0],
+                                timeSaved: 0,
+                            };
+                        }),
+                };
+            }
 
             // Fetch random quote
-            const randomQuote = await quotesAPI.getRandomQuote();
+            let randomQuote = null;
+            try {
+                randomQuote = await quotesAPI.getRandomQuote();
+            } catch (err) {
+                console.log("Error fetching quote:", err);
+                // Provide default quote
+                randomQuote = {
+                    text: "Start your mindfulness journey to unlock inspirational quotes!",
+                    author: "ScreenBloom",
+                    category: "general",
+                };
+            }
 
             // Fetch streak info
-            const streakInfo = await progressAPI.getStreak();
+            let streakInfo = null;
+            try {
+                streakInfo = await progressAPI.getStreak();
+            } catch (err) {
+                console.log("Error fetching streak:", err);
+                // Provide default streak
+                streakInfo = {
+                    current: 0,
+                    longest: 0,
+                    lastActive: new Date(),
+                };
+            }
 
             setStats(timeStats);
             setQuote(randomQuote);

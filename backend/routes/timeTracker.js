@@ -222,10 +222,18 @@ router.put("/goals/:goalId/complete", auth, async (req, res) => {
 // @access  Private
 router.get("/stats", auth, async (req, res) => {
     try {
-        const timeTracker = await TimeTracker.findOne({ user: req.user.id });
+        let timeTracker = await TimeTracker.findOne({ user: req.user.id });
 
         if (!timeTracker) {
-            return res.status(404).json({ msg: "Time tracker not found" });
+            // Create a new time tracker if one doesn't exist
+            timeTracker = new TimeTracker({
+                user: req.user.id,
+                totalTimeSaved: 0,
+                dailyStats: [],
+                goals: [],
+            });
+
+            await timeTracker.save();
         }
 
         // Calculate statistics
