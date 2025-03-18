@@ -159,6 +159,19 @@ ScreenBloom is a mobile application designed to help users replace mindless scro
 -   Unlockable inspirational quotes
 -   Achievement badges
 
+### Offline Support
+
+-   Local storage of user data
+-   Offline action queue for synchronization
+-   Network status monitoring
+-   Automatic sync when back online
+
+### Notifications
+
+-   Daily reminders for mindfulness practice
+-   Achievement notifications
+-   Goal completion reminders
+
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.

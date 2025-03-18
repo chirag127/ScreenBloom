@@ -5,6 +5,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 // Import context providers
 import { AuthProvider } from "./src/context/AuthContext";
 import { ThemeProvider, useTheme } from "./src/context/ThemeContext";
+import { NetworkProvider } from "./src/context/NetworkContext";
 
 // Import navigation
 import AppNavigator from "./src/navigation/AppNavigator";
@@ -13,9 +14,11 @@ import AppNavigator from "./src/navigation/AppNavigator";
 const App = () => {
     return (
         <SafeAreaProvider>
-            <ThemeProvider>
-                <AppContent />
-            </ThemeProvider>
+            <NetworkProvider>
+                <ThemeProvider>
+                    <AppContent />
+                </ThemeProvider>
+            </NetworkProvider>
         </SafeAreaProvider>
     );
 };
