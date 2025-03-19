@@ -3,7 +3,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // Base URL for API requests
 // const API_URL = "http://localhost:5001/api";
-const API_URL = "http://192.168.31.232:5001/api";
+// const API_URL = "http://192.168.31.232:5001/api";
+const API_URL = "https://screenbloom.onrender.com/api";
 
 
 // Create axios instance
