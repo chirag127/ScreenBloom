@@ -16,7 +16,7 @@
     "@react-navigation/native-stack": "^6.9.22",
     "axios": "^1.7.2",
     "expo": "~52.0.39",
-    "expo-device": "~7.0.2",
+    "expo-device": "~7.1.4",
     "expo-linear-gradient": "~14.0.2",
     "expo-notifications": "~0.29.14",
     "expo-status-bar": "~2.0.1",
