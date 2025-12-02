@@ -1,0 +1,121 @@
+name: CI/CD - Mobile App Validation
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  # Job 1: Dependency & Lint Validation (Frontend)
+  frontend_validation:
+    name: Frontend Validation (Expo/Node.js)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./mobile-frontend # Assuming mobile app code is in this subdirectory
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js (20.x)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies (uv equivalent for Node)
+        run: npm ci
+
+      - name: Run Linter (Biome/ESLint Equivalent)
+        run: npm run lint
+
+      - name: Run Static Type Check (TypeScript/JSDoc Check)
+        run: npm run typecheck
+
+      - name: Run Unit Tests (Vitest/Jest Equivalent)
+        run: npm run test:unit
+
+      # Note: E2E tests for Expo/React Native are complex and often require dedicated device farms/emulators.
+      # We prioritize build stability here.
+
+  # Job 2: Backend Service Validation (Node.js/Express)
+  backend_validation:
+    name: Backend Service Validation (API Layer)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend-service # Assuming backend API code is here
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js (20.x)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Backend Dependencies
+        run: npm ci
+
+      - name: Backend Linting & Formatting
+        run: npm run lint
+
+      - name: Run Backend Unit/Integration Tests (Pytest equivalent)
+        run: npm run test:e2e
+
+  # Job 3: Build Artifact Generation (Optional but recommended for mobile)
+  artifact_build:
+    name: Build Expo Artifacts
+    runs-on: macos-latest # Required for iOS builds, though EAS is preferred for production
+    needs: [frontend_validation, backend_validation]
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js (20.x)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Frontend Dependencies
+        run: npm ci
+        working-directory: ./mobile-frontend
+
+      - name: Cache EAS Secrets
+        id: cache-eas
+        uses: actions/cache@v4
+        with:
+          path: ~/.eas
+          key: ${{ runner.os }}-eas-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install EAS CLI
+        run: npm install -g eas-cli
+
+      - name: Configure EAS Credentials (Requires Secrets)
+        run: eas login --token ${{ secrets.EAS_CI_TOKEN }}
+
+      - name: Build Android APK (Preview/Debug)
+        run: eas build --platform all --profile preview
+        working-directory: ./mobile-frontend
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Upload Build Artifact (Android)
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-build-preview
+          path: ./mobile-frontend/dist/*.apk
+          retention-days: 3
+
+  # Deploy to staging/dev environment on successful main branch merge (Requires more complex environment configuration)
+  # deploy:
+  #   name: Deploy Backend Service
+  #   needs: backend_validation
+  #   if: github.ref == 'refs/heads/main'
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Trigger Deployment via API/CD Tool
+  #       run: echo "Simulating deployment to Staging environment for backend API..."
