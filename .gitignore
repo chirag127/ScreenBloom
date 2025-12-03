@@ -1,49 +1,46 @@
-# Ignore Node.js modules and build artifacts
+# Dependency Directories
 node_modules/
-dist/
-build/
-.env
-.env.*
-!.env.example
+/dist
+/build
 
-# Ignore macOS specific files
-.DS_Store
-
-# Ignore Windows specific files
-nthumb.db
-
-# Ignore IDE/editor specific files
-.vscode/
-.idea/
-*.swp
-
-# Ignore Expo specific files
+# Expo Specific
 .expo/
-
-# Ignore temporary files and logs
 *.log
-temp/
 *.tmp
 
-# Ignore testing artifacts
-coverage/
+# React Native Caches
+/android/build
+/android/.gradle
+/ios/build
+
+# Metro Bundler Cache
+.metro-cache/
+
+# Editor/OS Files
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Logs and Temp Files
 *.log
+*.txt
+/tmp
 
-# Ignore specific Node.js/npm/yarn files
-package-lock.json
-yarn.lock
-.npm
+# Security/Secrets (For local development environments)
+.env
+.env.local
 
-# Ignore MongoDB
-db.js
-*.dat
-*.log
+# TypeScript (if applicable, though Expo usually handles this via Babel/Metro)
+/coverage
+/temp
 
-# Ignore other common ignores for JS/React Native
-android/app/build/
-android/build/
-iOS/build/
+# MongoDB local data (If running server locally, though usually kept separate)
+# In a full-stack mobile context, this is often omitted unless the repo contains the server code too.
 
-# Ignore sensitive configuration files that should not be committed
-credentials.json
-secrets.json
+# Artifacts from npm/yarn scripts
+/npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Artifacts from testing frameworks (e.g., Vitest/Playwright if used)
+/test-results/
