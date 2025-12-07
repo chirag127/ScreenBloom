@@ -1,88 +1,90 @@
-# Contributing to ScreenBloom-Digital-Wellness-And-Mindfulness-Mobile-App
+# Contribution Guidelines for ScreenBloom-Digital-Wellness-And-Mindfulness-Mobile-App
 
-Thank you for considering contributing to ScreenBloom! We aim to foster a collaborative environment where everyone can help improve digital well-being for users.
+As the Apex Technical Authority, we enforce the highest standards of quality, architecture, and maintainability. Contributions to `ScreenBloom` must adhere to FAANG-level quality gates and the **Zero-Defect, High-Velocity, Future-Proof** philosophy.
 
-## 1. Code of Conduct
+## 1. Prerequisites and Setup
 
-This project adheres to a Contributor Covenant Code of Conduct. Please read the full text at [https://www.contributor-covenant.org/version/2/1/0/CODE_OF_CONDUCT.html](https://www.contributor-covenant.org/version/2/1/0/CODE_OF_CONDUCT.html). In brief, we are committed to providing a friendly, safe, and inclusive environment for everyone, regardless of gender, sexual orientation, disability, race, ethnicity, religion, or similar personal characteristics.
+Before contributing, ensure your local environment meets the defined stack requirements:
 
-## 2. How to Contribute
+*   **Platform:** JavaScript / TypeScript (React Native / Expo)
+*   **Dependencies:** Node.js (LTS current), Yarn/npm, Expo CLI.
+*   **Architecture:** All new features must align with the **Feature-Sliced Design (FSD)** principles for modularity, even within the React Native context.
 
-We welcome contributions in many forms, including bug reports, feature requests, code submissions, and documentation improvements.
+Follow these steps to prepare your development environment:
 
-### 2.1. Reporting Bugs
-
-If you find a bug, please open an issue on GitHub. Use the `bug_report.md` template. Provide as much detail as possible, including:
-
-*   A clear, descriptive title.
-*   Steps to reproduce the bug.
-*   The expected behavior.
-*   The actual behavior.
-*   Relevant screenshots or error messages.
-*   The version of the app and your device details.
-
-### 2.2. Suggesting Features
-
-Have an idea for a new feature? We'd love to hear it! Please open an issue on GitHub with the type "Feature Request" and describe your suggestion in detail. Explain why it would be valuable and how you envision it working.
-
-### 2.3. Submitting Code
-
-We encourage you to submit your code for review. Here's the general workflow:
-
-1.  **Fork the Repository:** Create your own fork of the `chirag127/ScreenBloom-Digital-Wellness-And-Mindfulness-Mobile-App` repository.
-2.  **Clone Your Fork:** Clone your forked repository to your local machine.
+1.  **Fork the Repository:** Create your own fork of `chirag127/ScreenBloom-Digital-Wellness-And-Mindfulness-Mobile-App`.
+2.  **Clone Locally:**
     bash
-    git clone https://github.com/chirag127/ScreenBloom-Digital-Wellness-And-Mindfulness-Mobile-App.git
+    git clone https://github.com/YOUR-USERNAME/ScreenBloom-Digital-Wellness-And-Mindfulness-Mobile-App.git
     cd ScreenBloom-Digital-Wellness-And-Mindfulness-Mobile-App
     
-3.  **Create a New Branch:** Always work on a new branch for your feature or bugfix. Name it descriptively (e.g., `feature/add-new-goal-tracking` or `fix/crash-on-login`).
+3.  **Install Dependencies:** We standardize on `npm` for maximum compatibility, managed via `package.json`.
     bash
-    git checkout -b your-branch-name
+    npm install
     
-4.  **Make Your Changes:** Implement your changes. Ensure your code follows the project's coding standards and architectural guidelines (refer to `.github/AGENTS.md` for details).
-5.  **Test Your Changes:** Write and run tests for your modifications. Ensure all existing tests pass.
-6.  **Lint and Format:** Run the linter and formatter to ensure code quality.
+4.  **Environment Variables:** Create a `.env` file in the root, mirroring `.env.example`, and populate necessary API keys (e.g., for potential third-party integrations or future AI backend hooks).
+
+## 2. Development Workflow: Quality Gate Enforcement
+
+All contributions must pass automated checks before merging.
+
+### A. Branching Strategy
+Use a descriptive feature branch based on the context:
+*   `feature/issue-XXXX-brief-description` for new functionality.
+*   `fix/issue-XXXX-brief-description` for bug remediation.
+*   `chore/maintenance-task` for infrastructure or dependency updates.
+
+### B. Linting and Formatting
+We enforce strict code quality using **Biome** for JavaScript/TypeScript/JSON/Markdown files. Formatting is non-negotiable.
+
+bash
+# Run linter and formatter checks across the codebase
+npm run lint
+
+# Fix all auto-fixable issues (mandatory before committing)
+npm run format
+
+
+### C. Testing
+Code must be accompanied by comprehensive tests. We utilize **Vitest** for unit/component testing and **Playwright** for end-to-end scenarios.
+
+*   **Unit Tests (Vitest):** Ensure functional correctness. Aim for **>85% Coverage** on all new logic.
     bash
-    # Example commands (adjust based on project setup)
-    npx expo lint
-    npx prettier --write .
+    npm run test:unit
     
-7.  **Commit Your Changes:** Commit your changes with clear and concise commit messages.
+*   **E2E Tests (Playwright):** Validate critical user journeys (e.g., App Blocking activation, time tracking persistence).
     bash
-    git commit -m "feat: Add new goal tracking functionality"
+    npm run test:e2e
     
-8.  **Push to Your Fork:** Push your branch to your GitHub fork.
+
+## 3. Submitting a Pull Request (PR)
+
+Follow the **PR Template** (`.github/PULL_REQUEST_TEMPLATE.md`) meticulously.
+
+1.  **Push Your Changes:** Push your feature branch to your fork.
     bash
-    git push origin your-branch-name
+    git push origin feature/my-new-feature
     
-9.  **Open a Pull Request:** Go to the original repository (`chirag127/ScreenBloom-Digital-Wellness-And-Mindfulness-Mobile-App`) and open a new Pull Request (PR) from your branch.
+2.  **Create the PR:** Navigate to the main repository and open a Pull Request targeting the `main` branch.
+3.  **Description Clarity:** Clearly articulate *what* was changed, *why* it was changed (linking to the corresponding issue), and *how* it affects the architecture (referencing FSD boundaries).
+4.  **Verification:** Confirm that the **CI Workflow (`ci.yml`)** has passed *before* requesting review. No PRs targeting failure states will be merged.
 
-    *   **PR Template:** Use the provided PR template to describe your changes.
-    *   **Squash and Merge:** We prefer to squash and merge PRs to keep the commit history clean.
+## 4. Architectural Principles Adherence
 
-### 2.4. Development Environment Setup
+All code must reflect deep respect for software engineering fundamentals:
 
-Refer to the `README.md` file for detailed instructions on setting up your development environment.
+*   **SOLID:** Especially Single Responsibility and Dependency Inversion.
+*   **DRY (Don't Repeat Yourself):** Abstract common patterns aggressively.
+*   **YAGNI (You Ain't Gonna Need It):** Avoid speculative generalization. Build only what is immediately necessary.
 
-## 3. Architectural Principles & Guidelines
+## 5. Reporting Issues
 
-This project follows the **Apex Technical Authority** standards and aims for a **Zero-Defect, High-Velocity, Future-Proof** development lifecycle.
+If you discover a bug or wish to propose a new feature, use the provided issue templates (`.github/ISSUE_TEMPLATE/bug_report.md`) or feature request template.
 
-*   **Tech Stack:** React Native (Expo), TypeScript, Node.js, MongoDB.
-*   **Architecture:** Modular Monolith (for the full-stack application context).
-*   **Coding Standards:** Adhere to strict linting and formatting rules (Biome/Ruff equivalent for JS/TS). Prioritize readability, maintainability, and DRY principles.
-*   **Testing:** Comprehensive unit and integration tests are crucial. Ensure new code is well-tested.
-*   **Security:** Follow best practices for mobile and backend security. Refer to `.github/SECURITY.md`.
+*   **Security Concerns:** Please read the **SECURITY.md** file for responsible disclosure procedures before public reporting.
 
-## 4. Communication
+--- 
 
-*   **Issues:** Use GitHub Issues for bug reports and feature requests.
-*   **Pull Requests:** Use Pull Requests for code contributions.
-*   **Discussions:** For general discussion or questions, please use the GitHub Discussions tab (if enabled) or appropriate channels as defined by the project maintainers.
+*By contributing to this project, you agree to license your contributions under the terms specified in the **LICENSE** file (CC BY-NC 4.0).* 
 
-## 5. Project Specifics
-
-*   **Repository:** [https://github.com/chirag127/ScreenBloom-Digital-Wellness-And-Mindfulness-Mobile-App](https://github.com/chirag127/ScreenBloom-Digital-Wellness-And-Mindfulness-Mobile-App)
-*   **License:** This project is licensed under the CC BY-NC license.
-
-We look forward to your contributions!
+[Back to Repository Root](https://github.com/chirag127/ScreenBloom-Digital-Wellness-And-Mindfulness-Mobile-App)
