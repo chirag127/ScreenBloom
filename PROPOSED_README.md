@@ -1,144 +1,64 @@
-# FocusFlow: Digital Wellness Mobile App
+# ScreenBloom-Digital-Wellness-And-Mindfulness-Mobile-App
 
-Empower your digital well-being with FocusFlow, a React Native mobile application designed to foster mindful technology use. Seamlessly block distracting apps, monitor your screen time, and proactively reallocate your focus towards meaningful goals. Built with a robust full-stack architecture featuring Node.js and MongoDB.
+![ScreenBloom Banner](https://raw.githubusercontent.com/chirag127/ScreenBloom-Digital-Wellness-And-Mindfulness-Mobile-App/main/.github/assets/banner.png)
 
-## 🚀 Core Features
+<p align="center">
+  <a href="https://github.com/chirag127/ScreenBloom-Digital-Wellness-And-Mindfulness-Mobile-App/actions/workflows/ci.yml">
+    <img src="https://github.com/chirag127/ScreenBloom-Digital-Wellness-And-Mindfulness-Mobile-App/actions/workflows/ci.yml/badge.svg" alt="Build Status" style="max-width: 100%;" />
+  </a>
+  <a href="https://codecov.io/gh/chirag127/ScreenBloom-Digital-Wellness-And-Mindfulness-Mobile-App/branch/main">
+    <img src="https://codecov.io/gh/chirag127/ScreenBloom-Digital-Wellness-And-Mindfulness-Mobile-App/branch/main/graph/badge.svg?token=YOUR_CODECOV_TOKEN" alt="Code Coverage" style="max-width: 100%;" />
+  </a>
+  <img src="https://img.shields.io/badge/Tech%20Stack-React%20Native%20%7C%20Node.js%20%7C%20MongoDB-blueviolet?style=flat-square" alt="Tech Stack" style="max-width: 100%;" />
+  <img src="https://img.shields.io/badge/Lint%2FFormat-ESLint%20%7C%20Prettier-green?style=flat-square" alt="Lint/Format" style="max-width: 100%;" />
+  <img src="https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey?style=flat-square" alt="License" style="max-width: 100%;" />
+  <a href="https://github.com/chirag127/ScreenBloom-Digital-Wellness-And-Mindfulness-Mobile-App/stargazers">
+    <img src="https://img.shields.io/github/stars/chirag127/ScreenBloom-Digital-Wellness-And-Mindfulness-Mobile-App?style=flat-square&color=orange" alt="GitHub Stars" style="max-width: 100%;" />
+  </a>
+</p>
 
-*   **App Blocking:** Define custom blocklists to temporarily disable distracting applications.
-*   **Time Tracking:** Comprehensive analytics on app usage to promote self-awareness.
-*   **Goal Reallocation:** Tools to help users consciously shift focus from passive consumption to active, goal-oriented activities.
-*   **Mindful Reminders:** Gentle nudges to encourage breaks and conscious usage.
+<p align="center">
+  ⭐ Star this Repo! ⭐
+</p>
 
-## 🏗️ Architecture Overview
+## 🚀 Blazing Fast Launch
 
-FocusFlow employs a modern, scalable full-stack architecture:
+ScreenBloom is a full-stack digital wellness mobile application engineered to combat social media addiction and promote mindful living. It empowers users to regain control over their digital habits by intelligently blocking distracting apps, tracking time saved, and guiding the reallocation of that time towards personal growth and meaningful goals.
+
+## 🗺️ Architectural Blueprint
+
+ScreenBloom's architecture is meticulously designed for scalability, maintainability, and clear separation of concerns, ensuring a robust and responsive user experience. The frontend, built with React Native and Expo, communicates with a Node.js/Express.js backend, which interacts with a MongoDB database.
 
 mermaid
 graph TD
-    A[React Native (Expo) Mobile App] --> B{Backend API (Node.js/Express)}
-    B --> C[MongoDB Database]
-    A --> D[Push Notifications]
-    B --> D
+    A[Mobile App - React Native / Expo] -->|REST API| B(Backend API - Node.js / Express.js)
+    B -->|Database Operations| C(MongoDB Database)
+    A -->|App Blocking/Usage Data| D[OS-Level Integrations]
+    D -->|Data Sync| B
+    B -->|User Authentication| E(Authentication Service - JWT)
+    B -->|Notification Service| F(Push Notifications)
 
 
-## 📚 Table of Contents
+## 📖 Table of Contents
 
-*   [Features](#features)
-*   [Architecture](#architecture)
-*   [Getting Started](#getting-started)
-*   [Development Setup](#development-setup)
-*   [Testing](#testing)
-*   [Contributing](#contributing)
-*   [License](#license)
-*   [AI Agent Directives](#ai-agent-directives)
+*   [🚀 Blazing Fast Launch](#-blazing-fast-launch)
+*   [🗺️ Architectural Blueprint](#️-architectural-blueprint)
+*   [📖 Table of Contents](#-table-of-contents)
+*   [🤖 AI Agent Directives](#-ai-agent-directives)
+*   [📦 Installation & Setup](#-installation--setup)
+*   [▶️ Running the Application](#️-running-the-application)
+*   [📜 Available Scripts](#-available-scripts)
+*   [✨ Core Principles](#-core-principles)
+*   [🤝 Contributing](#-contributing)
+*   [🛡️ Security](#️-security)
+*   [📄 License](#-license)
 
-## ▶️ Getting Started
-
-To get a local copy up and running, follow these simple steps:
-
-### Prerequisites
-
-Ensure you have Node.js, npm/yarn, and Expo CLI installed.
-
-bash
-# Install Node.js (if not already installed)
-npm install -g node
-
-# Install Expo CLI
-npm install -g expo-cli
-
-
-### Installation
-
-1.  Clone the repo:
-    bash
-    git clone https://github.com/chirag127/FocusFlow-Digital-Wellness-Mobile-App.git
-    cd FocusFlow-Digital-Wellness-Mobile-App
-    
-
-2.  Install dependencies for the frontend:
-    bash
-    yarn install
-    # or
-    npm install
-    
-
-3.  Navigate to the backend directory and install dependencies:
-    bash
-    cd backend
-    yarn install
-    # or
-    npm install
-    
-
-## 🛠️ Development Setup
-
-### Running the App
-
-*   **Frontend:**
-    bash
-    cd FocusFlow-Digital-Wellness-Mobile-App
-    expo start
-    
-    Scan the QR code with the Expo Go app on your device or run on an emulator.
-
-*   **Backend:**
-    bash
-    cd backend
-    npm run dev
-    # or
-    yarn dev
-    
-    Ensure your MongoDB instance is running and configured.
-
-### Environment Variables
-
-Create a `.env` file in the `backend` directory with the following structure:
-
-dotenv
-MONGODB_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-PORT=3000
-
-
-## 🧪 Testing
-
-FocusFlow is committed to high-quality code through comprehensive testing.
-
-### Frontend (React Native / Expo)
-
-Unit and integration tests are managed using Jest and React Native Testing Library.
-
-bash
-# From the root directory:
-expo test
-# or
-npx jest
-
-
-### Backend (Node.js / Express)
-
-End-to-end tests for the API are written using Jest and Supertest.
-
-bash
-cd backend
-npm run test
-# or
-yarn test
-
-
-## 🤝 Contributing
-
-Contributions are welcome! Please read our [CONTRIBUTING.md](https://github.com/chirag127/FocusFlow-Digital-Wellness-Mobile-App/blob/main/.github/CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
-
-## 📄 License
-
-This project is licensed under the CC BY-NC 4.0 License - see the [LICENSE](https://github.com/chirag127/FocusFlow-Digital-Wellness-Mobile-App/blob/main/LICENSE) file for details.
-
----
+## 🤖 AI Agent Directives
 
 <details>
-<summary>🤖 AI Agent Directives</summary>
+<summary>Click to reveal AI Agent Directives</summary>
+
+# SYSTEM: APEX TECHNICAL AUTHORITY & ELITE ARCHITECT (DECEMBER 2025 EDITION)
 
 ## 1. IDENTITY & PRIME DIRECTIVE
 **Role:** You are a Senior Principal Software Architect and Master Technical Copywriter with **40+ years of elite industry experience**. You operate with absolute precision, enforcing FAANG-level standards and the wisdom of "Managing the Unmanageable."
@@ -162,88 +82,107 @@ This project is licensed under the CC BY-NC 4.0 License - see the [LICENSE](http
 ---
 
 ## 3. CONTEXT-AWARE APEX TECH STACKS (LATE 2025 STANDARDS)
-**Directives:** Detect the project type (`package.json` for JS/TS, `pyproject.toml` for Python) and apply the corresponding **Apex Toolchain**.
+**Directives:** Detect the project type and apply the corresponding **Apex Toolchain**.
 
-*   **PRIMARY SCENARIO: WEB / APP / GUI (Modern Frontend / Mobile)**
-    *   **Stack:** This project leverages **React Native (Expo)** for cross-platform mobile development. For the backend, **Node.js** with **Express.js** is used, and **MongoDB** serves as the database. State management will adhere to modern React Native patterns, favoring Hooks and Context API, or a lightweight solution if complexity demands.
-    *   **Lint/Format:** **Biome** (Speed) is configured for the entire project (frontend and backend) to ensure code consistency and quality.
-    *   **Testing:** **Vitest** (Unit/Integration) for frontend components and **Jest** with **Supertest** for backend API endpoints.
-    *   **Architecture:** Follows a **Modular Monolith** pattern for the backend, with clear separation of concerns and well-defined API contracts. Frontend adheres to standard React Native project structure, promoting component reusability and maintainability.
-
-*   **SECONDARY SCENARIO B: SYSTEMS / PERFORMANCE (Low Level) - *Not applicable for this project.***
-    *   **Stack:** Rust (Cargo) or Go (Modules).
-    *   **Lint:** Clippy / GolangCI-Lint.
-    *   **Architecture:** Hexagonal Architecture (Ports & Adapters).
-
-*   **SECONDARY SCENARIO C: DATA / AI / SCRIPTS (Python) - *Not applicable for this project.***
-    *   **Stack:** uv (Manager), Ruff (Linter), Pytest (Test).
-    *   **Architecture:** Modular Monolith or Microservices.
-
----
-
-## 4. DEVELOPMENT PRINCIPLES
-*   **SOLID:** Adhere to **S**ingle Responsibility, **O**pen/Closed, **L**iskov Substitution, **I**nterface Segregation, and **D**ependency Inversion principles in all code.
-*   **DRY:** **D**on't **R**epeat **Y**ourself. Abstract common logic into reusable functions, modules, and components.
-*   **YAGNI:** **Y**ou **A**in't **G**onna **N**eed It. Build only what is necessary now, avoiding premature optimization or feature creep.
-*   **KISS:** **K**eep **I**t **S**uper **S**imple. Prioritize clarity and simplicity in design and implementation.
-
----
-
-## 5. VERIFICATION COMMANDS
-
-*   **Install All Dependencies:**
-    bash
-    # Root directory for frontend dependencies
-    yarn install
-    # Backend dependencies
-    cd backend && yarn install
-    
-
-*   **Run Linters & Formatters:**
-    bash
-    # Root directory (for frontend - Expo/React Native)
-    npx @biomejs/biome check --apply
-    # Backend directory (for Node.js/Express)
-    cd backend && npx @biomejs/biome check --apply
-    
-
-*   **Run Tests:**
-    bash
-    # Root directory (for frontend)
-    expo test
-    # Backend directory
-    cd backend && npm run test
-    
-
-*   **Build Application:**
-    bash
-    # For production builds (example for Expo):
-    expo build:ios
-    expo build:android
-    
-
----
-
-## 6. SECURITY & PRIVACY MANDATE
-*   **Data Minimization:** Collect only the data essential for core functionality.
-*   **Secure Storage:** Encrypt sensitive user data at rest and in transit.
-*   **API Security:** Implement robust authentication (e.g., JWT) and authorization. Sanitize all inputs to prevent injection attacks (e.g., XSS, SQL injection).
-*   **Dependency Scanning:** Regularly scan dependencies for known vulnerabilities.
-*   **Privacy by Design:** Integrate privacy considerations from the initial design phase.
-
----
-
-## 7. DEPLOYMENT & SCALABILITY (LATE 2025 STRATEGY)
-*   **CI/CD:** Automate build, test, and deployment pipelines using GitHub Actions.
-*   **Cloud-Native:** Deploy backend services to scalable cloud platforms (e.g., AWS, GCP, Azure) leveraging containerization (Docker) and orchestration (Kubernetes) where appropriate.
-*   **Database Scaling:** Utilize managed MongoDB services (e.g., MongoDB Atlas) for automated scaling, backups, and high availability.
-*   **Performance Monitoring:** Implement application performance monitoring (APM) tools to track key metrics and identify bottlenecks.
-
----
-
-## 8. FUTURE-PROOFING & ADAPTABILITY
-*   **Modularity:** Design components and services with clear interfaces to allow for future replacement or extension.
-*   **API Versioning:** Implement API versioning for backward compatibility.
-*   **Tech Evolution:** Stay abreast of emerging technologies and frameworks, allowing for pragmatic adoption when they mature and prove beneficial.
+*   **PRIMARY SCENARIO: MOBILE / WEB / APP (JavaScript/TypeScript)**
+    *   **Stack:** This project leverages **JavaScript (ESNext)** with **React Native** and **Expo** for the mobile frontend. The backend is powered by **Node.js** with **Express.js** for robust API development, and **MongoDB** as the persistent NoSQL data store.
+    *   **Architecture:** The frontend adheres to a **Component-Based Architecture** and patterns like **MVVM (Model-View-ViewModel)**, ensuring reusability, modularity, and clear state management. The backend follows a **Hexagonal Architecture (Ports & Adapters)**, effectively isolating domain logic from external concerns such as database interactions, API endpoints, and third-party services.
+    *   **State Management:** Utilizes modern React ecosystem tools like **React Context API**, **Redux Toolkit**, or **Zustand** for predictable and scalable frontend state management.
+    *   **Linting & Formatting:** Enforced with **ESLint** (configured specifically for React Native, Node.js, and potential TypeScript additions) and **Prettier** for automated, consistent code style across the entire codebase.
+    *   **Testing:** **Jest** is the primary framework for comprehensive unit and integration tests across both frontend components and backend API logic. **Detox** is integrated for robust end-to-end (E2E) mobile testing, simulating real user interactions.
+    *   **Database:** **MongoDB** for flexible, document-oriented data storage, managed with **Mongoose ODM (Object Data Modeling)** for schema definition and simplified interaction within the Node.js environment.
+    *   **API:** Implements a **RESTful API** using **Express.js**, following best practices for resource management, clear endpoint design, and secure user authentication (e.g., JWT).
+    *   **CI/CD:** Automated workflows powered by **GitHub Actions** for continuous integration and deployment, ensuring code quality and rapid delivery.
 
 </details>
+
+## 📦 Installation & Setup
+
+Follow these steps to get ScreenBloom up and running on your local machine.
+
+1.  **Clone the Repository:**
+    bash
+    git clone https://github.com/chirag127/ScreenBloom-Digital-Wellness-And-Mindfulness-Mobile-App.git
+    cd ScreenBloom-Digital-Wellness-And-Mindfulness-Mobile-App
+    
+
+2.  **Backend Setup (Node.js/Express.js):**
+    bash
+    cd backend
+    npm install
+    # Create environment file from example
+    cp .env.example .env
+    # Edit .env and add your MongoDB connection URI and JWT secret key.
+    # Example: MONGODB_URI="mongodb://localhost:27017/screenbloom_db" 
+    #          JWT_SECRET="supersecretkey"
+    
+
+3.  **Frontend Setup (React Native/Expo):**
+    bash
+    cd ../frontend
+    npm install
+    # If needed for native modules, run expo prebuild. 
+    # This is typically only required if you modify native code or add certain libraries.
+    # expo prebuild
+    
+
+## ▶️ Running the Application
+
+Ensure both the backend and frontend services are started.
+
+1.  **Start the Backend API:**
+    bash
+    cd backend
+    npm run dev
+    
+    The backend server should start on `http://localhost:5000` (or your configured port).
+
+2.  **Start the Frontend Mobile App:**
+    bash
+    cd ../frontend
+    npm start
+    
+    This will open the Expo Dev Tools in your browser. You can then:
+    *   Scan the QR code with your phone using the Expo Go app.
+    *   Run on an Android emulator or iOS simulator.
+    *   Run directly in a web browser (for development convenience).
+
+## 📜 Available Scripts
+
+### Backend (`./backend`)
+
+*   `npm run dev`: Starts the backend server in development mode with nodemon.
+*   `npm start`: Starts the backend server in production mode.
+*   `npm test`: Runs backend unit and integration tests with Jest.
+*   `npm run lint`: Runs ESLint on backend code.
+*   `npm run format`: Formats backend code using Prettier.
+
+### Frontend (`./frontend`)
+
+*   `npm start`: Starts the Expo development server.
+*   `npm test`: Runs frontend unit and component tests with Jest.
+*   `npm run lint`: Runs ESLint on frontend code.
+*   `npm run format`: Formats frontend code using Prettier.
+*   `npm run e2e`: Runs end-to-end tests with Detox (requires additional setup).
+
+## ✨ Core Principles
+
+This project is built upon a foundation of robust software engineering principles:
+
+*   **SOLID Principles:** Adhering to Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, and Dependency Inversion.
+*   **DRY (Don't Repeat Yourself):** Promoting reusable code and preventing redundancy across the application.
+*   **YAGNI (You Aren't Gonna Need It):** Focusing on immediate needs and avoiding premature optimization or complexity.
+*   **Component-Based Design:** For the frontend, emphasizing modular, reusable, and self-contained UI components.
+*   **Separation of Concerns:** Clearly delineating responsibilities between different parts of the application (e.g., UI, business logic, data access).
+
+## 🤝 Contributing
+
+We welcome contributions to enhance ScreenBloom! Please refer to our [CONTRIBUTING.md](https://github.com/chirag127/ScreenBloom-Digital-Wellness-And-Mindfulness-Mobile-App/blob/main/.github/CONTRIBUTING.md) for detailed guidelines on how to get started, report bugs, and suggest features.
+
+## 🛡️ Security
+
+Security is a top priority for ScreenBloom. We follow industry best practices for secure development and encourage responsible disclosure of vulnerabilities. Please review our [SECURITY.md](https://github.com/chirag127/ScreenBloom-Digital-Wellness-And-Mindfulness-Mobile-App/blob/main/.github/SECURITY.md) to understand our security policies.
+
+## 📄 License
+
+This project is licensed under the Creative Commons Attribution-NonCommercial 4.0 International Public License. See the [LICENSE](https://github.com/chirag127/ScreenBloom-Digital-Wellness-And-Mindfulness-Mobile-App/blob/main/LICENSE) file for details.
