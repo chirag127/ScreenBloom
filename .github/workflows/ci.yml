@@ -1,121 +1,85 @@
-name: CI/CD - Mobile App Validation
+name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ main, develop ]
+    branches:
+      - main
+      - develop
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
+      - develop
 
 jobs:
-  # Job 1: Dependency & Lint Validation (Frontend)
-  frontend_validation:
-    name: Frontend Validation (Expo/Node.js)
+  build-and-test:
+    name: Build and Test Full-Stack Application
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./mobile-frontend # Assuming mobile app code is in this subdirectory
+    timeout-minutes: 20
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js (20.x)
+      - name: Setup Node.js 20.x
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
 
-      - name: Install Dependencies (uv equivalent for Node)
-        run: npm ci
-
-      - name: Run Linter (Biome/ESLint Equivalent)
-        run: npm run lint
-
-      - name: Run Static Type Check (TypeScript/JSDoc Check)
-        run: npm run typecheck
-
-      - name: Run Unit Tests (Vitest/Jest Equivalent)
-        run: npm run test:unit
-
-      # Note: E2E tests for Expo/React Native are complex and often require dedicated device farms/emulators.
-      # We prioritize build stability here.
-
-  # Job 2: Backend Service Validation (Node.js/Express)
-  backend_validation:
-    name: Backend Service Validation (API Layer)
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./backend-service # Assuming backend API code is here
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js (20.x)
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
+      # --- Backend Service (Node.js/Express) --- 
       - name: Install Backend Dependencies
-        run: npm ci
+        working-directory: ./backend
+        run: npm install --legacy-peer-deps --prefer-offline
 
-      - name: Backend Linting & Formatting
-        run: npm run lint
+      - name: Run Backend Linting and Formatting Check (Biome)
+        working-directory: ./backend
+        run: npx biome check --apply-unsafe . && npx biome format --write . && git diff --exit-code
 
-      - name: Run Backend Unit/Integration Tests (Pytest equivalent)
-        run: npm run test:e2e
-
-  # Job 3: Build Artifact Generation (Optional but recommended for mobile)
-  artifact_build:
-    name: Build Expo Artifacts
-    runs-on: macos-latest # Required for iOS builds, though EAS is preferred for production
-    needs: [frontend_validation, backend_validation]
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js (20.x)
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install Frontend Dependencies
-        run: npm ci
-        working-directory: ./mobile-frontend
-
-      - name: Cache EAS Secrets
-        id: cache-eas
-        uses: actions/cache@v4
-        with:
-          path: ~/.eas
-          key: ${{ runner.os }}-eas-${{ hashFiles('**/package-lock.json') }}
-
-      - name: Install EAS CLI
-        run: npm install -g eas-cli
-
-      - name: Configure EAS Credentials (Requires Secrets)
-        run: eas login --token ${{ secrets.EAS_CI_TOKEN }}
-
-      - name: Build Android APK (Preview/Debug)
-        run: eas build --platform all --profile preview
-        working-directory: ./mobile-frontend
+      - name: Run Backend Tests (Vitest/Jest)
+        working-directory: ./backend
+        run: npm test -- --coverage --json --outputFile=coverage/coverage-backend.json
         env:
-          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+          CI: true
 
-      - name: Upload Build Artifact (Android)
+      - name: Collect Backend Coverage Report (LCOV)
         uses: actions/upload-artifact@v4
         with:
-          name: android-build-preview
-          path: ./mobile-frontend/dist/*.apk
-          retention-days: 3
+          name: backend-coverage-report
+          path: backend/coverage/lcov.info
 
-  # Deploy to staging/dev environment on successful main branch merge (Requires more complex environment configuration)
-  # deploy:
-  #   name: Deploy Backend Service
-  #   needs: backend_validation
-  #   if: github.ref == 'refs/heads/main'
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Trigger Deployment via API/CD Tool
-  #       run: echo "Simulating deployment to Staging environment for backend API..."
+      - name: Run Backend Security Audit (npm audit)
+        working-directory: ./backend
+        run: npm audit --audit-level=high
+
+      # --- Frontend Service (React Native/Expo) ---
+      - name: Install Frontend Dependencies
+        working-directory: ./mobile-app
+        run: npm install --legacy-peer-deps --prefer-offline
+
+      - name: Run Frontend Linting and Formatting Check (Biome)
+        working-directory: ./mobile-app
+        run: npx biome check --apply-unsafe . && npx biome format --write . && git diff --exit-code
+
+      - name: Run Frontend Tests (Jest)
+        working-directory: ./mobile-app
+        run: npm test -- --coverage --json --outputFile=coverage/coverage-frontend.json
+        env:
+          CI: true
+
+      - name: Collect Frontend Coverage Report (LCOV)
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-coverage-report
+          path: mobile-app/coverage/lcov.info
+
+      - name: Run Frontend Security Audit (npm audit)
+        working-directory: ./mobile-app
+        run: npm audit --audit-level=high
+
+      - name: Upload Combined Code Coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./backend/coverage/lcov.info,./mobile-app/coverage/lcov.info
+          fail_ci_if_error: true
+          verbose: true
