@@ -1,56 +1,55 @@
-# Bug Report
-
-## Thank you for contributing to ScreenBloom!
-
-Your report helps us make ScreenBloom better for everyone. Please provide as much detail as possible.
-
+---
+name: "🐛 Bug Report"
+about: "Report a reproducible bug to help us improve ScreenBloom."
+title: "[BUG] - Short, descriptive title of the bug"
+labels: "bug, triage"
+assignees: ""
 ---
 
-## 🐞 Bug Description
+## 🐛 Bug Report
 
-**What is the unexpected behavior?**
+Thank you for taking the time to report a bug! Your effort helps us make **ScreenBloom** more robust and reliable.
 
-(Describe the bug concisely. What happened that shouldn't have, or what didn't happen that should have?)
+Before submitting, please ensure you've checked the [existing issues](https://github.com/chirag127/ScreenBloom-Digital-Wellness-And-Mindfulness-Mobile-App/issues) to see if this bug has already been reported.
 
-## 📍 Steps to Reproduce
+### Current Behavior
 
-**Please list the steps to reproduce the behavior:**
+A clear and concise description of what the bug is.
 
-1.  Go to '...'
-2.  Click on '....'
-3.  Scroll down on '...'
-4.  See error
+### Expected Behavior
 
-## 📸 Screenshots or Screen Recordings
+A clear and concise description of what you expected to happen.
 
-If applicable, add screenshots or a screen recording to help explain your problem. You can drag & drop files here.
+### Steps To Reproduce
 
-## 📱 Device & Version Information
+Provide detailed steps to reproduce the behavior.
+**Example:**
+1.  Navigate to the 'Goals' screen.
+2.  Tap on 'Add New Goal'.
+3.  Enter 'Meditate daily' as the goal name.
+4.  Observe the app crashing.
 
-*   **Device:** (e.g., iPhone 14 Pro, Samsung Galaxy S23)
-*   **Operating System:** (e.g., iOS 17.2, Android 14)
-*   **ScreenBloom App Version:** (e.g., 1.0.5)
-*   **React Native / Expo Version (if known):**
+### Screenshots/Videos
 
-## 💻 Environment Details
+If applicable, add screenshots or screen recordings to help explain your problem.
 
-*   **Development Environment:** (e.g., macOS, Windows, Linux)
-*   **Node.js Version (if applicable):**
-*   **MongoDB Version (if applicable):**
+### Environment
 
-## 💡 Expected vs. Actual Behavior
+Please provide the following details about your environment:
 
-*   **Expected:** (What did you expect to happen?)
-*   **Actual:** (What actually happened?)
+*   **ScreenBloom Version:** [e.g., 1.0.0, develop-branch-commit-hash]
+*   **Operating System:** [e.g., Android 12, iOS 16]
+*   **Device Model:** [e.g., Samsung Galaxy S23, iPhone 14 Pro]
+*   **Node.js Version (if applicable for backend/development):** [e.g., v18.17.0]
+*   **npm/yarn Version (if applicable for development):** [e.g., 9.6.7 / 1.22.19]
+*   **Expo CLI Version (if applicable for development):** [e.g., 6.3.10]
+*   **Backend Deployed On:** [e.g., AWS EC2, Vercel, Localhost]
+*   **MongoDB Version:** [e.g., 6.0.5]
 
-## 🧪 Additional Information
+### Possible Solution (Optional)
 
-**Are there any other relevant information about the problem?**
+If you have an idea for a solution or a workaround, please share it.
 
-(e.g., specific app configurations, related issues, workarounds you've tried)
+### Additional Context
 
----
-
-### 🤖 Apex AI Agent Directives Link
-
-For detailed technical specifications and architectural guidelines, please refer to the [AGENTS.md](https://github.com/chirag127/ScreenBloom-Digital-Wellness-And-Mindfulness-Mobile-App/blob/main/AGENTS.md) file.
+Add any other context about the problem here (e.g., logs, error messages, specific user actions leading to the bug, frequency of occurrence).
