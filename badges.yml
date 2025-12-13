@@ -1,25 +1,19 @@
 badges:
-  - name: "Build Status"
-    image_url: "https://github.com/chirag127/ScreenBloom-Digital-Wellness-And-Mindfulness-Mobile-App/actions/workflows/ci.yml/badge.svg"
-    link_url: "https://github.com/chirag127/ScreenBloom-Digital-Wellness-And-Mindfulness-Mobile-App/actions/workflows/ci.yml"
-    alt_text: "Build Status"
-  - name: "Code Coverage"
-    image_url: "https://codecov.io/gh/chirag127/ScreenBloom-Digital-Wellness-And-Mindfulness-Mobile-App/branch/main/graph/badge.svg"
-    link_url: "https://codecov.io/gh/chirag127/ScreenBloom-Digital-Wellness-And-Mindfulness-Mobile-App"
-    alt_text: "Code Coverage"
-  - name: "Tech Stack"
-    image_url: "https://img.shields.io/badge/Stack-React_Native%20%7C%20Node.js%20%7C%20MongoDB-61DAFB?style=flat-square&logo=react&logoColor=white&labelColor=333"
-    link_url: "https://github.com/chirag127/ScreenBloom-Digital-Wellness-And-Mindfulness-Mobile-App"
-    alt_text: "Tech Stack"
-  - name: "Linting & Formatting"
-    image_url: "https://img.shields.io/badge/Linting%20%26%20Formatting-Biome-3B7DD4?style=flat-square&logo=biome&logoColor=white"
-    link_url: "https://biomejs.dev/"
-    alt_text: "Linting & Formatting"
-  - name: "License"
-    image_url: "https://img.shields.io/badge/License-CC_BY--NC_4.0-lightgrey?style=flat-square"
-    link_url: "https://creativecommons.org/licenses/by-nc/4.0/"
-    alt_text: "License: CC BY-NC 4.0"
-  - name: "GitHub Stars"
-    image_url: "https://img.shields.io/github/stars/chirag127/ScreenBloom-Digital-Wellness-And-Mindfulness-Mobile-App?style=flat-square&cacheSeconds=604800"
-    link_url: "https://github.com/chirag127/ScreenBloom-Digital-Wellness-And-Mindfulness-Mobile-App/stargazers"
-    alt_text: "GitHub Stars"
+  - name: Build Status
+    image: https://img.shields.io/github/actions/workflow/status/chirag127/ScreenBloom-Focus-Boost-Mobile-ReactNative-App/ci.yml?branch=main&style=flat-square
+    link: https://github.com/chirag127/ScreenBloom-Focus-Boost-Mobile-ReactNative-App/actions/workflows/ci.yml
+  - name: Code Coverage
+    image: https://img.shields.io/codecov/c/github/chirag127/ScreenBloom-Focus-Boost-Mobile-ReactNative-App?style=flat-square
+    link: https://codecov.io/gh/chirag127/ScreenBloom-Focus-Boost-Mobile-ReactNative-App
+  - name: License
+    image: https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey?style=flat-square
+    link: https://github.com/chirag127/ScreenBloom-Focus-Boost-Mobile-ReactNative-App/blob/main/LICENSE
+  - name: GitHub Stars
+    image: https://img.shields.io/github/stars/chirag127/ScreenBloom-Focus-Boost-Mobile-ReactNative-App?style=flat-square
+    link: https://github.com/chirag127/ScreenBloom-Focus-Boost-Mobile-ReactNative-App
+  - name: Tech Stack
+    image: https://img.shields.io/badge/React%20Native-20232A?style=flat-square&logo=react&logoColor=61DAFB
+    link: https://reactnative.dev/
+  - name: Lint/Format
+    image: https://img.shields.io/badge/Biome-3e69c5?style=flat-square&logo=biome
+    link: https://biome.dev/
